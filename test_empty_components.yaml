@@ -1,5 +1,8 @@
 # this configuration file has all empty custom components set up.
-# use 'esphome test_empty.yaml compile' to build. 
+# use 'esphome test_empty.yaml compile' to build.
+
+external_components:
+  - source: components
 
 packages:
   device: !include device.yaml # include our test device setup
@@ -13,7 +16,7 @@ sensor:
 
   - platform: empty_spi_sensor
     name: Empty SPI sensor
-    cs_pin: D8
+    cs_pin: GPIO22
 
   - platform: empty_uart_sensor
     name: Empty UART sensor
@@ -24,7 +27,7 @@ sensor:
     sensor2:
       name: Sensor 2
     sensor3:
-      name: Sensor 3  
+      name: Sensor 3
 
   - platform: empty_sensor_hub
     name: Sensor for empty sensor hub
@@ -33,7 +36,7 @@ sensor:
 binary_sensor:
   - platform: empty_binary_sensor
     name: Empty binary sensor
-  
+
   - platform: empty_sensor_hub
     name: Binary sensor for empty sensor hub
     empty_sensor_hub_id: empty_sensor_hub_1
@@ -49,7 +52,7 @@ light:
   - platform: empty_light
     name: Empty light
     output: empty_float_output_1
-    
+
 switch:
   - platform: empty_switch
     name: Empty switch
@@ -62,11 +65,11 @@ fan:
 text_sensor:
   - platform: empty_text_sensor
     name: Empty text sensor
-  
+
   - platform: empty_sensor_hub
     name: Text sensor for empty sensor hub
     empty_sensor_hub_id: empty_sensor_hub_1
-  
+
 cover:
   platform: empty_cover
   name: Empty cover
@@ -75,29 +78,28 @@ empty_component:
   id: empty_component_1
 
 i2c:
-  sda: 4
-  scl: 5
+  sda: GPIO4
+  scl: GPIO5
 
 empty_i2c_component:
   id: empty_i2c_component_1
   address: 0x01
 
 uart:
-  tx_pin: D0
-  rx_pin: D1
+  tx_pin: GPIO1
+  rx_pin: GPIO3
   baud_rate: 9600
 
 empty_uart_component:
   id: empty_uart_component_1
 
 spi:
-  clk_pin: D5
-  miso_pin: D6
+  clk_pin: GPIO15
+  miso_pin: GPIO16
 
 empty_spi_component:
   id: empty_spi_component_1
-  cs_pin: D8
+  cs_pin: GPIO17
 
 empty_sensor_hub:
   id: empty_sensor_hub_1
-
