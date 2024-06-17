@@ -6,29 +6,31 @@ namespace empty_fan {
 
 static const char *TAG = "empty_fan.fan";
 
-void EmptyFan::setup() {
-  auto traits = fan::FanTraits();
-  traits.set_direction(false);
-  traits.set_oscillation(false);
-  traits.set_speed(false);
-  
-  this->fan_->set_traits(traits);
-  
-  this->fan_->add_on_state_callback([this]() { this->next_update_ = true; });
+fan::FanTraits EmptyFan::get_traits() {
+  return fan::FanTraits(this->oscillating_ != nullptr, false, this->direction_ != nullptr, 0);
 }
 
-void EmptyFan::loop() {
-  if (!this->next_update_) {
-    return; //no state change, nothing to do
-  }
-  this->next_update_ = false;
-  
-  //there was a state change, do something here.
+void EmptyFan::control(const fan::FanCall &call) {
+  if (call.get_state().has_value())
+    this->state = *call.get_state();
+  if (call.get_oscillating().has_value())
+    this->oscillating = *call.get_oscillating();
+  if (call.get_direction().has_value())
+    this->direction = *call.get_direction();
+
+  this->write_state_();
+  this->publish_state();
 }
 
-void EmptyFan::dump_config() {
-  ESP_LOGCONFIG(TAG, "Empty fan");
+void EmptyFan::write_state_() {
+  this->output_->set_state(this->state);
+  if (this->oscillating_ != nullptr)
+    this->oscillating_->set_state(this->oscillating);
+  if (this->direction_ != nullptr)
+    this->direction_->set_state(this->direction == fan::FanDirection::REVERSE);
 }
 
-}  // namespace binary
+void EmptyFan::dump_config() { LOG_FAN("", "Empty fan", this); }
+
 }  // namespace empty_fan
+}  // namespace esphome
