@@ -4,7 +4,7 @@ This repository provides examples and basic empty components that can be used as
 
 ## How to use
 
-All sample components can be found in the `components` directory. The `test_empty_components.yaml` file provides configuration examples for the various custom components. To use a particular component for your project, do the following:
+All sample components can be found in the `components` directory. The `test_empty_components.yaml` file provides configuration examples for the various external components. To use a particular component for your project, do the following:
 
 - Create a `components` directory in your esphome configuration directory (the directory where your `.yaml` files are)
 
@@ -21,11 +21,11 @@ external_components:
 
 - Compile with `esphome compile your_config.yaml` (change `your_config.yaml` to your own `.yaml` file) or compile with the dashboard.
 
-- No errors? Great! You can now start modifying the empty component into your own custom component.
+- No errors? Great! You can now start modifying the empty component into your own external component.
 
-## Basic structure of a custom component
+## Basic structure of a external component
 
-Let's start with the simplest custom component:
+Let's start with the simplest external component:
 
 ```
 components
