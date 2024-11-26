@@ -42,11 +42,11 @@ namespace esphome
   template<typename... Ts> class YSRF34TSendCodeAction : public Action<Ts...> {
  public:
       YSRF34TSendCodeAction(YSRF34TUARTComponent *parent) : parent_(parent) {}
-      TEMPLATABLE_VALUE(uinit8_t, emit_time)
-      TEMPLATABLE_VALUE(uinit8_t, addr2)
-      TEMPLATABLE_VALUE(uinit8_t, addr1)
-      TEMPLATABLE_VALUE(uinit8_t, key_code)
-      TEMPLATABLE_VALUE(uinit8_t, osc_param)
+      TEMPLATABLE_VALUE(uint8_t, emit_time)
+      TEMPLATABLE_VALUE(uint8_t, addr2)
+      TEMPLATABLE_VALUE(uint8_t, addr1)
+      TEMPLATABLE_VALUE(uint8_t, key_code)
+      TEMPLATABLE_VALUE(uint8_t, osc_param)
   void play(Ts... x) {
     YSRF34TData data{};
     data.emit_time = this->emit_time_.value(x...);
