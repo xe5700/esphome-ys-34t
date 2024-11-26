@@ -61,7 +61,7 @@ namespace esphome
             this->data_callback_.call(data);
             continue; // 继续循环，处理下一个可用数据
           }
-          ESP_LOGE("Invalid end code! Not valid rf message."); // 记录错误日志，表示无效的 RF 消息
+          ESP_LOGE(TAG, "Invalid end code! Not valid rf message."); // 记录错误日志，表示无效的 RF 消息
         }
       }
     }

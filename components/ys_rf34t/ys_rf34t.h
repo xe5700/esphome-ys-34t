@@ -7,7 +7,14 @@ namespace esphome
 {
   namespace ys_rf34t
   {
-
+    struct YSRF34TData
+    {
+      uint8_t emit_time;
+      uint8_t addr2;
+      uint8_t addr1;
+      uint8_t key_code;
+      uint8_t osc_param;
+    };
     class YSRF34TUARTComponent : public uart::UARTDevice, public Component
     {
     public:
@@ -22,14 +29,7 @@ namespace esphome
       CallbackManager<void(YSRF34TData)> data_callback_;
     };
 
-    struct YSRF34TData
-    {
-      uint8_t emit_time;
-      uint8_t addr2;
-      uint8_t addr1;
-      uint8_t key_code;
-      uint8_t osc_param;
-    };
+
   class YSRF34TReceivedCodeTrigger : public Trigger<YSRF34TData> {
   public:
     explicit YSRF34TReceivedCodeTrigger(YSRF34TUARTComponent *parent) {
