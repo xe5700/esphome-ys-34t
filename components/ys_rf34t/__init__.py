@@ -16,7 +16,7 @@ YSRF34TUARTComponent = ys_rf34t_ns.class_(
 )
 YS34TData = ys_rf34t_ns.struct("YSRF34TData")
 YSRF34TReceivedCodeTrigger = ys_rf34t_ns.class_(
-    "YSRF34TReceivedCodeTrigger", automation.Trigger.template()
+    "YSRF34TReceivedCodeTrigger", automation.Trigger.template(YS34TData)
 )
 CONF_ON_CODE_RECEIVED = "on_code_received"
 CONFIG_SCHEMA = (
