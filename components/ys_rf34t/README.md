@@ -1,9 +1,8 @@
 ```yaml
 # example configuration:
 
-sensor:
-  - platform: empty_uart_sensor
-    name: Empty UART sensor
+ys_rf34t:
+  id: ys_rf34t_1
 
 uart:
   tx_pin: D0

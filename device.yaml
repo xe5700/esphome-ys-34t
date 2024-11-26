@@ -1,7 +1,7 @@
 # this is just a simple test device setup that's used to compile and test the examples
 
 esphome:
-  name: custom_components_test
+  name: custom_component_ys_rf34t
 
 esp32:
   board: esp32dev
