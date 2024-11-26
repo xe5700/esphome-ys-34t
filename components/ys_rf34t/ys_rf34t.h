@@ -38,7 +38,7 @@ namespace esphome
   };
   template<typename... Ts> class YSRF34TSendCodeAction : public Action<Ts...> {
  public:
-  YSRF34TSendCodeAction(YSRF34TUARTComponent *parent) : parent_(parent) {}
+      YSRF34TSendCodeAction(YSRF34TUARTComponent *parent) : parent_(parent) {}
       TEMPLATABLE_VALUE(uinit8_t, emit_time)
       TEMPLATABLE_VALUE(uinit8_t, addr2)
       TEMPLATABLE_VALUE(uinit8_t, addr1)
@@ -59,4 +59,4 @@ namespace esphome
 };
 
   } // namespace empty_uart_component
-} // namespace esphome
+}; // namespace esphome
