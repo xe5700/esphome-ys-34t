@@ -49,7 +49,7 @@ async def to_code(config):
 YSRF34TSendRfAction = ys_rf34t_ns.class_(
     "YSRF34TSendRfAction", automation.Action
 )
-YSRF34T_ID_SCHEMA = cv.Schema({cv.GenerateID(): cv.use_id(YSRF34TUARTComponent)})
+
 # 定义 CONF_ 变量，值为相应的字段名称
 CONF_EMIT_TIME = "emit_time"
 CONF_ADDR2 = "addr2"
@@ -57,7 +57,15 @@ CONF_ADDR1 = "addr1"
 CONF_KEY_CODE = "key_code"
 CONF_OSC_PARAM = "osc_param"
 CONF_END = "end"
-
+YSRF34T_ID_SCHEMA = cv.Schema({
+    cv.GenerateID(): cv.use_id(YSRF34TUARTComponent),  # 生成唯一 ID 并引用 YSRF34TUARTComponent
+    cv.Required(CONF_EMIT_TIME): cv.templatable(cv.hex_uint8_t),  # 可选的 emit_time 字段，类型为 uint8
+    cv.Required(CONF_ADDR2): cv.templatable(cv.hex_uint8_t),       # 可选的 addr2 字段，类型为 uint8
+    cv.Required(CONF_ADDR1): cv.templatable(cv.hex_uint8_t),       # 可选的 addr1 字段，类型为 uint8
+    cv.Required(CONF_KEY_CODE): cv.templatable(cv.hex_uint8_t),    # 可选的 key_code 字段，类型为 uint8
+    cv.Required(CONF_OSC_PARAM): cv.templatable(cv.hex_uint8_t),   # 可选的 osc_param 字段，类型为 uint8
+    }
+)
 @automation.register_action("ys_rf34t.send_rf", YSRF34TSendRfAction, YSRF34T_ID_SCHEMA)
 async def ys_rf34t_send_rf_to_rf(config, action_id,template_args, args):
     paren = await cg.get_variable(config[CONF_ID])
