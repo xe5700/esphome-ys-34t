@@ -2,6 +2,7 @@
 
 #include "esphome/core/component.h"
 #include "esphome/components/uart/uart.h"
+#include "esphome/core/automation.h"
 
 namespace esphome
 {
@@ -36,6 +37,8 @@ namespace esphome
       parent->add_on_code_received_callback([this](YSRF34TData data) { this->trigger(data); });
     }
   };
+
+
   template<typename... Ts> class YSRF34TSendCodeAction : public Action<Ts...> {
  public:
       YSRF34TSendCodeAction(YSRF34TUARTComponent *parent) : parent_(parent) {}
