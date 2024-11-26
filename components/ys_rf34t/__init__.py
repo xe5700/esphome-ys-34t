@@ -40,6 +40,11 @@ async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
     await uart.register_uart_device(var, config)
+    
+    for conf in config.get(CONF_ON_CODE_RECEIVED, []):
+        trigger = cg.new_Pvariable(conf[CONF_TRIGGER_ID], var)
+        await automation.build_automation(trigger, [(YS34TData, "data")], conf)
+
 
 YSRF34TSendRfAction = ys_rf34t_ns.class_(
     "YSRF34TSendRfAction", automation.Action
